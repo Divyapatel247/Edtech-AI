@@ -1,10 +1,57 @@
-import "./App.css";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+// import Footer from "./components/Footer/Footer";
+// import "./App.scss";
+import { Login } from "./pages/Login";
+import { Home } from "./pages/Home";
+import { Profile } from "./pages/Profile";
+import Navbar from "./components/Navbar";
+import { NewCourse } from "./pages/NewCourse";
+import Videos from "./pages/Videos";
+
+const Layout = () => {
+  return (
+    <div className="app">
+      <Navbar />
+      <Outlet />
+      {/* <Footer/> */}
+    </div>
+  );
+};
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Layout />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
+      {
+        path: "/newcourse",
+        element: <NewCourse />,
+      },
+      {
+        path: "/videos",
+        element: <Videos />,
+      },
+    ],
+  },
+]);
 
 function App() {
   return (
-    <>
-      <div>hellow world!!</div>
-    </>
+    <div>
+      <RouterProvider router={router} />
+    </div>
   );
 }
 
