@@ -7,6 +7,7 @@ import { Profile } from "./pages/Profile";
 import Navbar from "./components/Navbar";
 import { NewCourse } from "./pages/NewCourse";
 import Videos from "./pages/Videos";
+import Video from "./pages/Video";
 
 const Layout = () => {
   return (
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: "/videos",
         element: <Videos />,
+      },
+      {
+        path: "/video",
+        element: <Video />,
       },
     ],
   },

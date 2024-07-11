@@ -20,3 +20,8 @@ model User {
   email    String  @unique
   image    String?
 }
+
+model Video {
+  id  String @id @default(uuid())
+  key String @unique
+}

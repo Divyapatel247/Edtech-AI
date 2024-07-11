@@ -1,12 +1,12 @@
 import { IRouter } from "express";
 import express from "express";
-import { uploadImage } from "../controllers/upload";
+import { getUploadedObj, uploadVideo } from "../controllers/upload";
 
 const router: IRouter = express.Router();
 
 //UPLOAD THUMBNAIL
-router.post("/image", uploadImage);
-
+router.post("/image", uploadVideo);
+router.get("/getvideos", getUploadedObj);
 //UPLOAD VIDEO
 // router.post("/video", uploadVideo);
 

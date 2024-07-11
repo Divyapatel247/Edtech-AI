@@ -63,6 +63,14 @@ app.get("/api/user/logout", (req, res) => {
         res.redirect("http://localhost:5173"); // will always fire after session is destroyed
     });
 });
+app.get("/api/db/videos", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const videos = yield prisma.video.findMany({
+        select: { key: true },
+    });
+    const keys = videos.map((video) => video.key.replace(".mp4", ""));
+    console.log(keys);
+    res.send(keys);
+}));
 app.use("/api/upload", upload_1.default);
 // app.get("/api/profile", async (req, res) => {
 //   try {

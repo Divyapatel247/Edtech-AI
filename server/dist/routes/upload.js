@@ -7,7 +7,8 @@ const express_1 = __importDefault(require("express"));
 const upload_1 = require("../controllers/upload");
 const router = express_1.default.Router();
 //UPLOAD THUMBNAIL
-router.post("/image", upload_1.uploadImage);
+router.post("/image", upload_1.uploadVideo);
+router.get("/getvideos", upload_1.getUploadedObj);
 //UPLOAD VIDEO
 // router.post("/video", uploadVideo);
 exports.default = router;

@@ -76,6 +76,15 @@ app.get("/api/user/logout", (req, res) => {
   });
 });
 
+app.get("/api/db/videos", async (req, res) => {
+  const videos = await prisma.video.findMany({
+    select: { key: true },
+  });
+  const keys = videos.map((video) => video.key.replace(".mp4", ""));
+  console.log(keys);
+  res.send(keys);
+});
+
 app.use("/api/upload", uploadRoutes);
 
 // app.get("/api/profile", async (req, res) => {
