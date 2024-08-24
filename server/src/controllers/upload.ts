@@ -25,10 +25,12 @@ export const uploadVideo = async (req: Request, res: Response, err: any) => {
     });
   }
   const userDetails: UploadType = requestBody.data;
+  const userId = (req.user as any).id;
   // const key = key;
   const setKey = await prisma.video.create({
     data: {
       key: userDetails.key,
+      userId: userId,
     },
   });
   console.log(setKey);

@@ -19,9 +19,12 @@ model User {
   name     String
   email    String  @unique
   image    String?
+  Videos   Video[]
 }
 
 model Video {
-  id  String @id @default(uuid())
-  key String @unique
+  id     String @id @default(uuid())
+  key    String @unique
+  userId String
+  user   User   @relation(fields: [userId], references: [googleId])
 }

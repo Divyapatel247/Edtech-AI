@@ -7,20 +7,28 @@ dotenv.config();
 const prisma = new PrismaClient();
 
 passport.serializeUser((user: any, done) => {
-  done(null, user.id);
-  console.log(user.id);
-  console.log("in serializer");
+  done(null, user);
 });
 
-passport.deserializeUser(async (id: string, done) => {
-  console.log("in deserializer");
-  try {
-    const user = await prisma.user.findUnique({ where: { id } });
-    done(null, user);
-  } catch (err) {
-    done(err, null);
-  }
+passport.deserializeUser(async (user: any, done) => {
+  done(null, user);
 });
+
+// passport.serializeUser((user: any, done) => {
+//   done(null, user.id);
+//   console.log(user.id);
+//   console.log("in serializer");
+// });
+
+// passport.deserializeUser(async (id: string, done) => {
+//   console.log("in deserializer");
+//   try {
+//     const user = await prisma.user.findUnique({ where: { id } });
+//     done(null, user);
+//   } catch (err) {
+//     done(err, null);
+//   }
+// });
 
 passport.use(
   new GoogleStrategy(

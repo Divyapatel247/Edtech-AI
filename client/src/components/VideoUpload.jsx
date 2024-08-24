@@ -20,6 +20,19 @@ function VideoUpload() {
       transition: Bounce,
     });
   };
+  const errorTost = () => {
+    toast.error("😌~ error ~😌", {
+      position: "top-center",
+      autoClose: 4000,
+      hideProgressBar: true,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      transition: Bounce,
+    });
+  };
   const loading = () => {
     toastId.current = toast.info("🦄 Uploading!", {
       position: "top-center",
@@ -65,6 +78,7 @@ function VideoUpload() {
       "http://localhost:3000/api/upload/image",
       data,
       {
+        withCredentials: true,
         headers: {
           "Content-Type": "application/json",
         },
@@ -87,6 +101,7 @@ function VideoUpload() {
       })
       .catch((error) => {
         console.error("Upload failed:", error);
+        setUploading(errorTost);
       });
   };
   return (

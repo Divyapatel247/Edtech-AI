@@ -27,10 +27,12 @@ const uploadVideo = (req, res, err) => __awaiter(void 0, void 0, void 0, functio
         });
     }
     const userDetails = requestBody.data;
+    const userId = req.user.id;
     // const key = key;
     const setKey = yield prisma.video.create({
         data: {
             key: userDetails.key,
+            userId: userId,
         },
     });
     console.log(setKey);

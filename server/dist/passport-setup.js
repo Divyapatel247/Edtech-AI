@@ -19,20 +19,25 @@ const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
 const prisma = new client_1.PrismaClient();
 passport_1.default.serializeUser((user, done) => {
-    done(null, user.id);
-    console.log(user.id);
-    console.log("in serializer");
+    done(null, user);
 });
-passport_1.default.deserializeUser((id, done) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("in deserializer");
-    try {
-        const user = yield prisma.user.findUnique({ where: { id } });
-        done(null, user);
-    }
-    catch (err) {
-        done(err, null);
-    }
+passport_1.default.deserializeUser((user, done) => __awaiter(void 0, void 0, void 0, function* () {
+    done(null, user);
 }));
+// passport.serializeUser((user: any, done) => {
+//   done(null, user.id);
+//   console.log(user.id);
+//   console.log("in serializer");
+// });
+// passport.deserializeUser(async (id: string, done) => {
+//   console.log("in deserializer");
+//   try {
+//     const user = await prisma.user.findUnique({ where: { id } });
+//     done(null, user);
+//   } catch (err) {
+//     done(err, null);
+//   }
+// });
 passport_1.default.use(new passport_google_oauth20_1.Strategy({
     clientID: "1059419114112-4kld3e3js7fe95im7mhv30bcmvcu7g2d.apps.googleusercontent.com",
     clientSecret: "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",

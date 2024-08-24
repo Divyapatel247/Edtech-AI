@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import { NewCourse } from "./pages/NewCourse";
 import Videos from "./pages/Videos";
 import Video from "./pages/Video";
+import PrivateRoute from "../PrivateRoute";
 
 const Layout = () => {
   return (
@@ -29,16 +30,16 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/login",
-        element: <Login />,
-      },
-      {
         path: "/profile",
         element: <Profile />,
       },
       {
         path: "/newcourse",
-        element: <NewCourse />,
+        element: (
+          <PrivateRoute>
+            <NewCourse />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/videos",
@@ -50,11 +51,15 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/login",
+    element: <Login />,
+  },
 ]);
 
 function App() {
   return (
-    <div>
+    <div className="bg-slate-800 h-screen">
       <RouterProvider router={router} />
     </div>
   );

@@ -10,6 +10,7 @@ const VideoLink = () => {
   const inputRef = useRef(null);
   const getLinks = async () => {
     const url = await axios.get("http://localhost:3000/api/db/videos", {
+      withCredentials: true,
       headers: {
         "Content-Type": "application/json",
       },
@@ -21,6 +22,7 @@ const VideoLink = () => {
     // SetVideoLink(url.data.subfolderKeys);
     // console.log(url.data.subfolderKeys);
     const data = await axios.get("http://localhost:3000/api/upload/getvideos", {
+      withCredentials: true,
       headers: {
         "Content-Type": "application/json",
       },
@@ -64,7 +66,7 @@ const VideoLink = () => {
         <div
           key={link.key}
           id="toast-default"
-          className="flex justify-between items-center w-full h-16 m-2 px-3 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800"
+          className="flex justify-between items-center w-full h-16 m-2 px-3 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400  dark:bg-gray-900 border border-gray-300 "
           role="alert"
         >
           {link.flag ? (
@@ -77,7 +79,7 @@ const VideoLink = () => {
             className={link.flag ? "" : "pointer-events-none opacity-30"}
             to={`/video/?key=${link.key}`}
           >
-            <div className="inline-flex items-center m-2 justify-center flex-shrink-0 w-10 h-10 text-blue-500 bg-blue-100 rounded-3xl dark:bg-blue-800 dark:text-blue-200">
+            <div className="inline-flex items-center m-2 justify-center flex-shrink-0 w-10 h-10 text-blue-500 bg-blue-100 rounded-3xl dark:bg-blue-800 dark:text-blue-200 hover:hover:dark:bg-blue-600">
               <svg
                 version="1.1"
                 id="Capa_1"
